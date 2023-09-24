@@ -11,7 +11,7 @@ Cluster Upgrade is an important aspect of any Kubernetes Administrator role. The
   $ kubectl get pods -o wide
   ```
 
-2- Drain all pods from the first node you want to upgrade, if the node contains a DaemonSet (pass the **--ignore-daemonsets** option), if the node contains Pods that are not a part of a Deployment (you have to through the **--force** option)
+2- Drain all pods from the first node you want to upgrade, if the node contains a DaemonSet (pass the ```--ignore-daemonsets``` option), if the node contains Pods that are not a part of a Deployment (you have to through the ```--force``` option)
   ```
   $ kubectl drain $node_name
   ```
@@ -32,7 +32,7 @@ Cluster Upgrade is an important aspect of any Kubernetes Administrator role. The
   $ kubeadm version
   ```
 
-6- After upgrading your Kubeadm version, check that your cluster can be upgraded, and fetche the versions you can upgrade to through the **kubeadm upgrade plan** command
+6- After upgrading your Kubeadm version, check that your cluster can be upgraded, and fetch the versions you can upgrade to through the ```kubeadm upgrade plan``` command
   ```
   $ kubeadm upgrade plan
   ```
@@ -63,3 +63,7 @@ Cluster Upgrade is an important aspect of any Kubernetes Administrator role. The
   ```
   $ kubectl uncordon $node_name
   ```
+11- Repeat the entire steps to upgrade the remaining nodes
+
+## Video Demonstration
+
