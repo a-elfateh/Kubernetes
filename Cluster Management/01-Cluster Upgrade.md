@@ -67,3 +67,7 @@ Cluster Upgrade is an important aspect of any Kubernetes Administrator role. The
 
 ## Video Demonstration
 
+
+
+https://github.com/a-elfateh/Kubernetes/assets/61758821/5b1ffcdc-6515-4a05-b4f4-453758914c0b
+
