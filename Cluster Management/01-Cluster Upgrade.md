@@ -11,7 +11,7 @@ Cluster Upgrade is an important aspect of any Kubernetes Administrator role. The
   $ kubectl get pods -o wide
   ```
 
-2- Drain all pods from the first node you want to upgrade, if the node contains a DaemonSet (pass the ```--ignore-daemonsets``` option), if the node contains Pods that are not a part of a Deployment (you have to through the ```--force``` option)
+2- Drain all pods from the first node you want to upgrade, if the node contains a DaemonSet (pass the ```--ignore-daemonsets``` option), if the node contains Pods that are not a part of a Deployment (you have to throw the ```--force``` option)
   ```
   $ kubectl drain $node_name
   ```
