@@ -21,28 +21,45 @@ Cluster Upgrade is an important aspect of any Kubernetes Administrator role. The
   $ kubectl get pod -o wide
   ```
 
-4- Inspect the nodes distribuition accros nodes again to check where the pods where avicted to
-  ```
-  $ kubectl get pod -o wide
-  ```
-5- Update your package manager's list and install the latest/desired Kubeadm & Kubelet versions
+4- Update your package manager's list and install the latest/desired Kubeadm & Kubelet versions
   ```
   $ sudo apt update
   $ sudo apt install kubeadm=1.2x.0-00 kubectl=1.2x.0-00
   ```
+
 5- Check the current version of Kubeadm 
   ```
   $ kubeadm version
   ```
+
 6- After upgrading your Kubeadm version, check that your cluster can be upgraded, and fetche the versions you can upgrade to through the **kubeadm upgrade plan** command
   ```
   $ kubeadm upgrade plan
   ```
+
 7- Choose the minor-version/patch-version you want to upgrade to and upgrade your cluster to, wait for a minute or mroe till Kubeadm finishes upgrading your node
   ```
   $ kubeadm upgrade apply 1.2x.0
   ```
+
 8- Inspect any pod of the kube-system namespace, and look for the image version to assure the upgrade process was successfull
   ```
-  $ kubctl 
+  $ kubectl describe pod -n kube-system $pod_name
+  ```
+
+**If you ran the ``` kubectl get node ``` command, you will notice that the node version still hasn't been changed; that's because the version that is displayed is the kubelet version and there's a couple of steps to do to finish kubelet's upgrade.**
+
+8- Reload ``` Systemd ``` unit files thorugh, and restart the kubelet service
+  ```
+  $ sudo systemctl daemon-reload
+  $ sudo systemctl restart kubelet
+  ```
+
+9- Inspect the nodes version again, and you will notice that the node version has been change to the version you've upgraded to
+  ```
+  $ kubectl get nodes
+  ```
+10- Change the node's state from Unschedulable to Schedulable again so it can be ready for accepting pods upon creation.
+  ```
+  $ kubectl uncordon $node_name
   ```
