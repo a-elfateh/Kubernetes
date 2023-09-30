@@ -15,3 +15,68 @@ As we mentioned, etcd stores information about the cluster, nodes, and every res
 
 ### Backup process of etcd ###
 #### 1- Stacked Deployment:
+This is when etcd shares the same node alongside the other control plane components.
+Things to know regarding stacked etcd deployment's backup and restore process:
+   - etcd is deployed using a static pod contoroled by Kubeadm where the yaml file is located in the ```/etc/kubernetes/manifests/```
+   - ```etcdctl``` utility is used for the backup/restore procedure.
+   - The backup and restore methods require TLS verification using certificates located in the ```/etc/kuberneters/pki/etcd```
+   - As the etcd pod is located in the same node with the kube-apiserver, ```etcdctl``` will not require passing in the ```endpoints``` option as the kube-apiserver and etcd share the same node/server.
+
+Steps:
+
+1- First check the currnet cluster for all deployed resources accross the default namespaces.
+```
+$ kubectl get all
+```
+
+2- If your current cluster has no resources deployed in the default namespace, please throw couple of resources in there so we can use it as a validater for the backup/restore process.
+```
+$ kubectl create deploy testing-deployment --image=nginx --replicas=4
+```
+
+3- Check that the deployment was created successfully and that's currently running
+```
+$ kubectl get all
+```
+
+**Till this point in our namespace we have 1x Deployment 1x ReplicaSet 4x Pods**
+
+4- Let's set the environment variable needed to run the etcdctl utility.
+```
+$ export ETCDCTL_API=3
+```
+
+5- As we mentioned before, the backup process needes TLS authentication using certificates. We will need to know which certificates etcd is currently using. We will pass in "step 6" these options 
+- ```cacert```=/etc/kubernetes/pki/etcd/ca.crt
+- ```cert```=/etc/kubernetes/pki/etcd/server.crt
+- ```key```=/etc/kubernetes/pki/etcd/server.key
+
+**```etcdctl``` utility -in most cases- requires defining the etcd server location using the ```endpoints``` option, as we are working on the same server where etcd is located, this won't be needed**
+
+```
+$ kubectl describe pod -n kube-system etcd | grep -iA 20 command
+```
+**OR**
+```
+$ cat /etc/kubernetes/manifests/etcd.yaml | grep -iA 20 command
+```
+This will show the variables that the etcd pod is using.
+
+6- We will be taking the etcd snapshot using the ```etcdctl snaphost save``` command. 
+```
+$ etcdctl snapshot save backup_name.db\
+--cacert /etc/kubernetes/pki/etcd/ca.crt\
+--cert /etc/kubernetes/pki/etcd/server.crt\
+--key /etc/kubernetes/pki/etcd/server.key
+
+7- After we created the backup, let us now delete the deployment we created earlier to simulate a disaster scenario.
+```
+$ kubectl delete deploy testing-deployment
+```
+
+8- Verify the deletion, you should see no resources
+```
+$ kubectl get all
+```
+
+9- Let us now restore the 
