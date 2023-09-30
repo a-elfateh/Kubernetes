@@ -68,6 +68,7 @@ $ etcdctl snapshot save backup_name.db\
 --cacert /etc/kubernetes/pki/etcd/ca.crt\
 --cert /etc/kubernetes/pki/etcd/server.crt\
 --key /etc/kubernetes/pki/etcd/server.key
+```
 
 7- After we created the backup, let us now delete the deployment we created earlier to simulate a disaster scenario.
 ```
@@ -88,4 +89,29 @@ If the restore was successfull, you should see an output like this
 <img width="743" alt="Screenshot 2023-09-30 at 2 58 08 PM" src="https://github.com/a-elfateh/Kubernetes/assets/61758821/b9a66d16-5b00-40a3-9d00-b9044364563a">
 
 
-10- Finally, edit the static file that the etcd pod reads its configuration from,
+
+10- Finally, edit the static file that the etcd pod reads its configuration from. 
+```
+$ vim /etc/kubernetes/manifests/etcd.yaml
+```
+
+Search/scroll-down for the "Volumes" section at the end of the yaml file, change the ```etcd-data``` volume path from ```/var/lib/etcd``` to ```/opt/etcd_restore``` and save the file
+```
+  volumes:
+  - hostPath:
+      path: /etc/kubernetes/pki/etcd
+      type: DirectoryOrCreate
+    name: etcd-certs
+  - hostPath:
+      path: /var/lib/etcd
+      type: DirectoryOrCreate
+    name: etcd-data
+```
+**Please note: it will take about a minute for the changes to take effect on the etcd pod**. Check to see if the deployment we created and deleted earlier is restored using the ```kubectl get all```
+
+## Video Demonstration ##
+
+
+
+https://github.com/a-elfateh/Kubernetes/assets/61758821/1609b19d-ef23-4bf8-bac9-891604dbd909
+
