@@ -103,7 +103,7 @@ Search/scroll-down for the "Volumes" section at the end of the yaml file, change
       type: DirectoryOrCreate
     name: etcd-certs
   - hostPath:
-      path: /var/lib/etcd
+      path: /opt/etcd_restore
       type: DirectoryOrCreate
     name: etcd-data
 ```
