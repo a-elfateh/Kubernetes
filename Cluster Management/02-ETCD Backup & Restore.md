@@ -11,7 +11,7 @@ etcd is a key value store. In Kubernetes, it's responsible of storing all inform
 - External Deployment: etcd is deployed as a systemd service in a seperate server
 
 ### Someone might ask why do we need to backup etcd in the first place? 🤔
-As we mentioned, etcd stores information about the cluster, nodes, and every resource deployed in that cluster. Meaning, backuping up etcd results in backuping up our entire cluster.
+As we mentioned, etcd stores information about the cluster, nodes, and every resource deployed in that cluster. Meaning, backing up etcd results in backing up our cluster's resources.
 
 ### Backup process of etcd ###
 #### 1- Stacked Deployment:
