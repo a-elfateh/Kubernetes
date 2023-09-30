@@ -79,4 +79,13 @@ $ kubectl delete deploy testing-deployment
 $ kubectl get all
 ```
 
-9- Let us now restore the 
+9- Let us now restore the backup we took.
+```
+$ etcdctl snapshot restore backup_name.db --data-dir /opt/etcd_restore
+```
+If the restore was successfull, you should see an output like this
+
+<img width="743" alt="Screenshot 2023-09-30 at 2 58 08 PM" src="https://github.com/a-elfateh/Kubernetes/assets/61758821/b9a66d16-5b00-40a3-9d00-b9044364563a">
+
+
+10- Finally, edit the static file that the etcd pod reads its configuration from,
