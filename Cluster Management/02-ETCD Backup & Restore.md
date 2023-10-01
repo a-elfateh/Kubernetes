@@ -117,4 +117,38 @@ https://github.com/a-elfateh/Kubernetes/assets/61758821/1609b19d-ef23-4bf8-bac9-
 
 
 
-#### 1- External Deployment:
+#### 2- External Deployment:
+This is when the etcd server is located outside the controlplane node. Things to note about this deployment:
+- etcd is deployed as a systemd service, where the default config file is located at ```/etc/systemd/system/etcd.service```
+- The etcd server exposes by default port **2379** for the etcd service
+- TLS authentication happens between any client retrieving information and the etcd server
+- As the etcd server is a remote server, we will be needing to specify the ```--endpoints``` option in our commands
+
+Steps:
+1- Let's first locate the IP address of our external etcd server
+```
+$ ps -ef | grep etcd
+```
+You will get an output such as 
+```
+root        1844    1462  0 18:14 ?        00:03:01 kube-apiserver --advertise-address=192.39.14.9 --allow-privileged=true --authorization-mode=Node,RBAC
+--client-ca-file=/etc/kubernetes/pki/ca.crt --enable-admission-plugins=NodeRestriction --enable-bootstrap-token-auth=true --etcd-cafile=/etc/kubernetes/pki/etcd
+/ca.pem --etcd-certfile=/etc/kubernetes/pki/etcd/etcd.pem --etcd-keyfile=/etc/kubernetes/pki/etcd/etcd-key.pem --etcd-servers=https://192.39.14.21:2379 --kubelet-
+client-certificate=/etc/kubernetes/pki/apiserver-kubelet-client.crt --kubelet-client-key=/etc/kubernetes/pki/apiserver-kubelet-client.key --kubelet-preferred-
+address-types=InternalIP,ExternalIP,Hostname --proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.crt --proxy-client-key-file=/etc/kubernetes
+/pki/front-proxy-client.key --requestheader-allowed-names=front-proxy-client --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt
+--requestheader-extra-headers-prefix=X-Remote-Extra- --requestheader-group-headers=X-Remote-Group --requestheader-username-headers=X-Remote-User --secure-
+port=6443 --service-account-issuer=https://kubernetes.default.svc.cluster.local --service-account-key-file=/etc/kubernetes/pki/sa.pub --service-account-signing-
+key-file=/etc/kubernetes/pki/sa.key --service-cluster-ip-range=10.96.0.0/12 --tls-cert-file=/etc/kubernetes/pki/apiserver.crt --tls-private-key-file=/etc
+/kubernetes/pki/apiserver.key
+```
+**Notice in the above process, an option is passed called ```--etcd-servers``` with an IP address in its value. This is what we need**
+
+2- We can check if our connection to the etcd server is running by using the following command
+```
+$ curl 192.39.14.21:2380/version --caert -cert -key 
+```
+OR
+```
+ETCDCTL_API=3 etcdctl endpoint health --endpoints [server_ip]:2379 --cacert --cert --key
+```
