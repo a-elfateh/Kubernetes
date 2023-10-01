@@ -118,4 +118,3 @@ https://github.com/a-elfateh/Kubernetes/assets/61758821/1609b19d-ef23-4bf8-bac9-
 
 
 #### 1- External Deployment:
-
