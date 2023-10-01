@@ -144,11 +144,15 @@ key-file=/etc/kubernetes/pki/sa.key --service-cluster-ip-range=10.96.0.0/12 --tl
 ```
 **Notice in the above process, an option is passed called ```--etcd-servers``` with an IP address in its value. This is what we need**
 
-2- We can check if our connection to the etcd server is running by using the following command
+2- We can check if our connection to the etcd server is running by using the following command, where we can get the following options values from the above output:
+- [etcd_server_ip] = --etcd-servers
+- [ca_cert_location] = --etcd-cafile
+- [cert_location] = --etcd-certfile
+- [key_location] = --etcd-keyfile
 ```
-$ curl 192.39.14.21:2380/version --caert -cert -key 
+$ curl [etcd_server_ip]:2380/version  --cacert [ca_cert_location] --cert [cert_location] --key [key_location]
 ```
 OR
 ```
-ETCDCTL_API=3 etcdctl endpoint health --endpoints [server_ip]:2379 --cacert --cert --key
+$ ETCDCTL_API=3 etcdctl endpoint health --endpoints [etcd_server_ip]:2379 --cacert [ca_cert_location] --cert [cert_location] --key [key_location]
 ```
