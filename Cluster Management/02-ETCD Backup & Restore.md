@@ -107,11 +107,15 @@ Search/scroll-down for the "Volumes" section at the end of the yaml file, change
       type: DirectoryOrCreate
     name: etcd-data
 ```
-**Please note: it will take about a minute for the changes to take effect on the etcd pod**. Check to see if the deployment we created and deleted earlier is restored using the ```kubectl get all```
+**Please note: it will take about a minute for the changes to take effect on the etcd pod, don't rush it like me 😬**. Check to see if the deployment we created and deleted earlier is restored using the ```kubectl get all```
 
 ## Video Demonstration ##
 
 
 
 https://github.com/a-elfateh/Kubernetes/assets/61758821/1609b19d-ef23-4bf8-bac9-891604dbd909
+
+
+
+#### 1- External Deployment:
 
