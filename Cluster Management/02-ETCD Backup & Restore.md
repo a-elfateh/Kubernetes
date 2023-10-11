@@ -222,7 +222,7 @@ $ chmod -R 755 /opt/etcd_resotre
 ```
 nano /etc/systemd/system/etcd.service
 ```
-**Change the value of the ```--data-dir``` optionn to ```/opt/etcd_restore```. Save the file using CTRL+O and the pressing enter. Exit the file with CTRL+X**
+**Change the value of the ```--data-dir``` option to ```/opt/etcd_restore```. Save the file using CTRL+O and then pressing enter. Exit the file with CTRL+X**
 
 13- Return to the control-plane node using the ```exit``` command, and wait for a minute or two so etcd can restore your cluster.
 
