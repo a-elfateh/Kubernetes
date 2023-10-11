@@ -205,7 +205,7 @@ $ exit
 
 9- Return to the etcd-server using ```ssh```
 
-10- Restore you backup.db file using the ```etcdctl```
+10- Restore you backup.db file using ```etcdctl```
 ```
 $ETCDCTL_API=3 etcdctl snapshot restore backup.db --data-dir /opt/etcd_resotre
 ```
