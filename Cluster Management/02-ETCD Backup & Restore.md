@@ -203,7 +203,7 @@ $ exit
 
 8- Run the ```kubectl get all``` command, and delete any workload you see using the ```kubectl delete``` command
 
-9- Return to the etcd-server using ssh
+9- Return to the etcd-server using ```ssh```
 
 10- Restore you backup.db file using the ```etcdctl```
 ```
