@@ -210,7 +210,7 @@ $ exit
 $ETCDCTL_API=3 etcdctl snapshot restore backup.db --data-dir /opt/etcd_resotre
 ```
 
-11- Change the ownership and permissions of the /opt/restore file so that the etcd user configured to run the etcd service can access the restore file
+11- Change the ownership and permissions of the /opt/etcd_restore file so that the etcd user configured to run the etcd service can access the restore file
 ```
 $ chown -R etcd:etcd /opt/etcd_resotre
 ```
@@ -228,5 +228,5 @@ nano /etc/systemd/system/etcd.service
 
 14- Check your restore
 ```
-
+$ kubectl get all
 ```
