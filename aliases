@@ -1,0 +1,8 @@
+alisa k=“kubectl”
+alias ka=“kubectl apply -f”
+alias do=“--dry-run=client -o yaml”
+alias oy=“-o yaml”
+alias kg=“kubectl get”
+alias kd=“kubectl describe”
+alias kc=“kubectl config”
+alias kcu=“kubectl config use-context”
