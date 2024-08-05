@@ -1,4 +1,4 @@
-#"GCE quota exceeded"  error in GKE clusters#
+# "GCE quota exceeded"  error in GKE clusters #
 
 Running into a "GCE quota exceeded" error while scaling your GKE cluster indicates that your Google Cloud Platform (GCP) project has reached the quota limits for certain resources. Here’s how to troubleshoot and resolve this issue:
 
@@ -45,10 +45,11 @@ gcloud container clusters resize [CLUSTER_NAME] --node-pool [NODE_POOL_NAME] --n
 Enable Autoscaling:
 
 Enable cluster autoscaling to better manage resource allocation:
-sh
-Copy code
+```
 gcloud container clusters update [CLUSTER_NAME] --enable-autoscaling --min-nodes [MIN_NODES] --max-nodes [MAX_NODES] --zone [ZONE]
-Step 4: Monitor Quota Usage and Alerts
+```
+
+**Step 4: Monitor Quota Usage and Alerts**
 Set Up Quota Monitoring:
 
 Use Google Cloud Monitoring to set up alerts for quota usage:
@@ -71,11 +72,11 @@ Request a Quota Increase:
 Select the quota and click Edit Quotas to request an increase.
 Verify Resource Usage:
 
-Run kubectl get nodes -o wide to check current node utilization.
+Run ```kubectl get nodes -o wide``` to check current node utilization.
 Optimize node pools if necessary.
 Enable Cluster Autoscaling:
 
-Use gcloud container clusters update to enable autoscaling for better resource management.
+Use ```gcloud container clusters update``` to enable autoscaling for better resource management.
 Monitor Quota Usage:
 
 Set up monitoring alerts in the GCP Console to track quota usage and avoid future issues.
