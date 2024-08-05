@@ -1,12 +1,14 @@
 # "GCE quota exceeded"  error in GKE clusters #
 
-Running into a "GCE quota exceeded" error while scaling your GKE cluster indicates that your Google Cloud Platform (GCP) project has reached the quota limits for certain resources. Here’s how to troubleshoot and resolve this issue:
+Running into a "GCE quota exceeded" error while scaling your GKE cluster indicates that your project has reached the quota limits for certain resources. Here’s how to troubleshoot and resolve this issue:
 
 ## Example Steps to Resolve GCE Quota Exceeded Issue
 
 **Identify the Specific Quota Exceeded:**
 
 Run ```kubectl describe pod [POD_NAME]``` to identify the specific resource causing the issue. Look for the specific resource that has exceeded its quota, such as CPUs, GPUs, or specific machine types.
+
+
 
 **Check Quotas in GCP Console:**
 1- Go to the Quotas page and filter by region and resource. 
