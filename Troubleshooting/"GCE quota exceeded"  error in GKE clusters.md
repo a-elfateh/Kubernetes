@@ -8,7 +8,7 @@ Running into a "GCE quota exceeded" error while scaling your GKE cluster indicat
 
 Run ```kubectl describe pod [POD_NAME]``` to identify the specific resource causing the issue. Look for the specific resource that has exceeded its quota, such as CPUs, GPUs, or specific machine types.
 
-
+![gce](https://github.com/user-attachments/assets/37dae0dd-e987-4b5b-a236-3d8f29a7570a)
 
 **Check Quotas in GCP Console:**
 1- Go to the Quotas page and filter by region and resource. 
