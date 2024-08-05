@@ -1,17 +1,22 @@
+#"GCE quota exceeded"  error in GKE clusters#
+
 Running into a "GCE quota exceeded" error while scaling your GKE cluster indicates that your Google Cloud Platform (GCP) project has reached the quota limits for certain resources. Here’s how to troubleshoot and resolve this issue:
 
-Step 1: Identify the Quota Limit Exceeded
+**Step 1: Identify the Quota Limit Exceeded**
 Check the Quota Error Details:
 
 Run the following command to get detailed information about the pods:
-´´´kubectl describe pod [POD_NAME]´´´
+```
+kubectl describe pod [POD_NAME]
+```
+
 Look for the specific resource that has exceeded its quota, such as CPUs, GPUs, or specific machine types.
 Review Quotas in GCP Console:
-
 Go to the Quotas page in the GCP Console.
 Filter the quotas by the specific region your cluster is in.
 Check the usage and limits for the resources in question.
-Step 2: Request a Quota Increase
+
+**Step 2: Request a Quota Increase**
 Select the Quota to Increase:
 
 On the Quotas page, find the resource you need to increase.
@@ -21,21 +26,22 @@ Request Quota Increase:
 Click the Edit Quotas button at the top of the page.
 Fill out the form with the requested increase amount and provide a reason for the increase.
 Submit the request. Google Cloud typically reviews these requests within 24-48 hours.
-Step 3: Verify and Optimize Your Resource Usage
+
+**Step 3: Verify and Optimize Your Resource Usage**
 Check Current Resource Usage:
 
 Use the following command to get an overview of your current resource usage:
-sh
-Copy code
+```
 kubectl get nodes -o wide
+```
 Ensure that your current nodes and pods are using resources efficiently.
 Optimize Node Pools:
 
 Consider adjusting your node pool configuration to use machine types that are within your current quota limits.
 Example command to update a node pool:
-sh
-Copy code
+```
 gcloud container clusters resize [CLUSTER_NAME] --node-pool [NODE_POOL_NAME] --num-nodes [NUMBER_OF_NODES] --region [REGION]
+```
 Enable Autoscaling:
 
 Enable cluster autoscaling to better manage resource allocation:
