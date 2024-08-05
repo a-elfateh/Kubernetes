@@ -33,6 +33,7 @@ Use ```gcloud container clusters update``` to enable autoscaling for better reso
 **Monitor Quota Usage is crucial in production envirnoments. As an implementaion engineer, managing mission-criticl workloads for your companies with GKE, it's recommended to set up monitoring alerts in the GCP Console to track quota usage and avoid future issues.**
 
 1- Go to the Monitoring page in the GCP Console.
+
 2- Create an alert policy that triggers when a specific quota reaches a certain threshold.
 
 Regularly check your quota usage in the GCP Console to ensure you stay within limits and request increases proactively.
