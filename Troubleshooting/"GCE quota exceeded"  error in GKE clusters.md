@@ -12,8 +12,7 @@ Run ```kubectl describe pod [POD_NAME]``` to identify the specific resource caus
 
 **Check Quotas in GCP Console:**
 
-1- Go to the Quotas page and filter by region and resource.
-
+1- Go to the Quotas page and filter by region and resource
 2- Filter the quotas by the specific region your cluster is in.
 3- Check the usage and limits for the resources in question. If the quota set is lower than the number of nodes the cluster trying to scale to, then increase your quota.
 
