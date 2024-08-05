@@ -12,7 +12,7 @@ Run ```kubectl describe pod [POD_NAME]``` to identify the specific resource caus
 
 **Check Quotas in GCP Console:**
 
-1- Go to the Quotas page and filter by region and resource.
+1- Go to the Quotas page and filter by region and resource. \n
 2- Filter the quotas by the specific region your cluster is in.
 3- Check the usage and limits for the resources in question. If the quota set is lower than the number of nodes the cluster trying to scale to, then increase your quota.
 
@@ -31,6 +31,7 @@ Use ```gcloud container clusters update``` to enable autoscaling for better reso
 
 
 **Monitor Quota Usage is crucial in production envirnoments. As an implementaion engineer, managing mission-criticl workloads for your companies with GKE, it's recommended to set up monitoring alerts in the GCP Console to track quota usage and avoid future issues.**
+
 1- Go to the Monitoring page in the GCP Console.
 2- Create an alert policy that triggers when a specific quota reaches a certain threshold.
 
