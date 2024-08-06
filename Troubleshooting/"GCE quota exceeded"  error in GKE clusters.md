@@ -16,7 +16,9 @@ Run ```kubectl describe pod [POD_NAME]``` to identify the specific resource caus
 
 2- Filter the quotas by the specific region your cluster is in 
 
-3- Check the usage and limits for the resources in question. If the quota set is lower than the number of nodes the cluster trying to scale to, then increase your quota.
+3- Check the usage and limits for the resources in question. If any quota set is lower than what the cluster is trying to scale to, then increase your quota.
+
+<img width="1279" alt="Screenshot 2024-08-05 at 9 18 31 PM" src="https://github.com/user-attachments/assets/4939322b-d67a-4e67-b861-c5945d4286af">
 
 **Now verify Resource Usage:**
 
